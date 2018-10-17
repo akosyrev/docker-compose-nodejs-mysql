@@ -1,6 +1,7 @@
-FROM node:latest
+FROM node:10.12.0-jessie
 
-ADD start.sh /start.sh
+COPY ./start.sh /start.sh
+RUN npm install -g nodemon
 RUN chmod 755 /start.sh
 CMD ["/start.sh"]
 
