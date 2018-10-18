@@ -7,10 +7,11 @@ var router = express.Router();
 var DataBaseHandler = require("../config/DataBaseHandler");
 var dataBaseHandler = new DataBaseHandler();
 
+var db_query = process.env.DATABASE_QUERY || 'CALL sp_GetEmployee();'
 var connection = dataBaseHandler.createConnection();
 
 router.get('/', function (req, res, next) {
-    connection.query('CALL sp_GetEmployee();', function (error, result, fields) {
+    connection.query(db_query, function (error, result, fields) {
         if (error) throw error;
 
         if(result[0].length== 0){
@@ -21,7 +22,6 @@ router.get('/', function (req, res, next) {
         }else{
             res.status(202).send({
                 status : "SUCCESS",
-                message: "User was found",
                 data : result[0]
             });
         }

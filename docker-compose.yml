@@ -15,6 +15,7 @@ services:
      - DATABASE_PASSWORD=123
      - DATABASE_NAME=CHIRINOS
      - DATABASE_PORT=3306
+     - DATABASE_QUERY=SELECT @@version;
     volumes:
      - ./sample-service/api:/app/api
 
