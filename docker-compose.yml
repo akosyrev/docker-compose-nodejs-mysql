@@ -6,9 +6,9 @@ services:
     build: ./sample-service
     ports:
      - "8123:8123"
-    depends_on:
-     db:
-       condition: service_healthy
+#    depends_on:
+#     db:
+#       condition: service_healthy
     environment:
      - DATABASE_HOST=db
      - DATABASE_USER=users_service
@@ -19,10 +19,10 @@ services:
     volumes:
      - ./sample-service/api:/app/api
 
-  db:
-    build: ./database-service
-    healthcheck:
-      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost", "--protocol", "TCP", "-P", "3306", "-p123"]
-      interval: 2s
-      timeout: 1s
-      retries: 20
+#  db:
+#    build: ./database-service
+#    healthcheck:
+#      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost", "--protocol", "TCP", "-P", "3306", "-p123"]
+#      interval: 2s
+#      timeout: 1s
+#      retries: 20
